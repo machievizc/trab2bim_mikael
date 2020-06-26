@@ -1,0 +1,46 @@
+<div class="conteudo">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#!/">
+                <span class="workflow">WORKFLOW</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-stretch">
+                <div class="navbar-nav ml-auto">
+                    <div class="nav-nome-container nav-item btn-group">
+                        <a class="nav-nome badge badge-light" href="#!/signup" data-toggle="tooltip" data-placement="top" title="Cadastrar">CADASTRAR</a>
+                        <a class="nav-nome badge badge-light" href="#!/signin" data-toggle="tooltip" data-placement="top" title="Logar">Logar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="sign">
+    <div class="card tables">
+        <div class="card-body">
+            <h5 class="card-title align-center padding-20">CADASTRAR</h5>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nome completo" ng-model="usuario.nome">                
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-class="{'is-invalid': userFail}" placeholder="Nome de usuário" ng-model="usuario.username">
+                <div class="invalid-feedback">
+                    Já existe um usuário com este nome de usuário!
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Senha" ng-model="usuario.password">                
+            </div>
+
+            <div class="text-right">
+                <button class="btn btn-block btn-info" ng-click="signup()">Cadastrar-se</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            Já é cadastrado? <a class="btn btn-info" href="#!/signin">Entre</a>
+        </div>
+    </div>
+</div>

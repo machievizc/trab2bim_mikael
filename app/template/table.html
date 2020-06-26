@@ -1,0 +1,365 @@
+<div class="conteudo">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#!/">
+                <span class="workflow">WORKFLOW</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-stretch d-flex flex-row">
+                <div class="ml-auto d-flex flex-row">
+                    <img class="avatar avatar-sm" ng-src="{{'assets/img/avatars/'+ logado.avatar +'.svg'}}"></img>
+                </div>
+                <div class="navbar-nav d-flex flex-row">
+                    <div class="nav-nome-container nav-item btn-group d-flex flex-row">
+                        <a class="nav-nome badge badge-light" href="#!/" data-toggle="tooltip" data-placement="top"
+                            title="Home">{{logado.nome}}</a>
+                        <a class="nav-nome badge badge-light pointer" data-toggle="tooltip" data-placement="top"
+                            title="Sair" ng-click="sair()">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- titulos -->
+    <div class="container tables">
+        <div class="row">
+            <div class="col-12 work-table align-center padding-20 workflow">
+                <h1>TRABALHOS</h1>
+            </div>
+            <div class="media col-3 border">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1 align-center">IDEIAS</h5>
+                </div>
+            </div>
+
+            <div class="media col-3 border">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1 align-center">TRIAL</h5>
+                </div>
+            </div>
+
+            <div class="media col-3 border">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1 align-center">PRODUÇÃO</h5>
+                </div>
+            </div>
+
+            <div class="media col-3 border">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1 align-center">ENTREGA</h5>
+                </div>
+            </div>
+            <div class="progress-bar w-100 col-12 align-center" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100"></div>
+        </div>
+    </div>
+
+    <!-- design -->
+    <div class="container align-center">
+        <div class="row">
+            <div class="media col-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="no-feeds" ng-if="feeds.length == 0">
+                            <p class="lead text-center">Nenhuma postagem foi feita ainda!</p>
+                        </div>
+                        <div class="card" ng-repeat="feed in feeds | orderBy:'+id'">
+                            <p class="feed-time">Postado em <time>{{feed.dtpost | date:'dd/MM/yyyy'}} às
+                                    {{feed.dtpost | date:'HH:mm'}}</time></p>
+                            <img ng-src="{{feed.imagem}}" class="card-img-top">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="comentario in feed.comentarios">
+                                    <span ng-if="comentario.comentario"><strong>Anotação:
+                                        </strong>{{comentario.comentario}}</span>
+                                </li>
+                            </ul>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="download-btn ml-auto">
+                                        <a href="{{feed.imagem}}" class="btn btn-block btn-outline-info" target="blank"
+                                            data-toggle="tooltip" data-placement="top" title="Abrir em nova aba">
+                                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="download-btn">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Editar"><i class="fa fa-pencil"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                    <div class="download-btn mr-auto">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Deletar" ng-click="remove()"><i
+                                                class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- trial -->
+            <div class="media col-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="no-feeds" ng-if="feedstrial.length == 0">
+                            <p class="lead text-center">Nenhuma postagem foi feita ainda!</p>
+                        </div>
+                        <div class="card" ng-repeat="feedtrial in feedstrial | orderBy:'+id'">
+                            <p class="feed-time">Postado em <time>{{feedtrial.dtpost | date:'dd/MM/yyyy'}} às
+                                    {{feedtrial.dtpost | date:'HH:mm'}}</time></p>
+                            <img ng-src="{{feedtrial.imagem}}" class="card-img-top">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="comentario in feedtrial.comentarios">
+                                    <span ng-if="comentario.comentario"><strong>Anotação:
+                                        </strong>{{comentario.comentario}}</span>
+                                </li>
+                            </ul>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="download-btn ml-auto">
+                                        <a href="{{feedtrial.imagem}}" class="btn btn-block btn-outline-info"
+                                            target="blank" data-toggle="tooltip" data-placement="top"
+                                            title="Abrir em nova aba">
+                                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="download-btn">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Editar"><i class="fa fa-pencil"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                    <div class="download-btn mr-auto">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Deletar" ng-click="removetrial()"><i
+                                                class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- producao -->
+            <div class="media col-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="no-feeds" ng-if="feedsproducao.length == 0">
+                            <p class="lead text-center">Nenhuma postagem foi feita ainda!</p>
+                        </div>
+                        <div class="card" ng-repeat="feedproducao in feedsproducao | orderBy:'+id'">
+                            <p class="feed-time">Postado em <time>{{feedproducao.dtpost | date:'dd/MM/yyyy'}} às
+                                    {{feedproducao.dtpost | date:'HH:mm'}}</time></p>
+                            <img ng-src="{{feedproducao.imagem}}" class="card-img-top">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="comentario in feedproducao.comentarios">
+                                    <span ng-if="comentario.comentario"><strong>Anotação:
+                                        </strong>{{comentario.comentario}}</span>
+                                </li>
+                            </ul>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="download-btn ml-auto">
+                                        <a href="{{feedproducao.imagem}}" class="btn btn-block btn-outline-info"
+                                            target="blank" data-toggle="tooltip" data-placement="top"
+                                            title="Abrir em nova aba">
+                                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="download-btn">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Editar"><i class="fa fa-pencil"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                    <div class="download-btn mr-auto">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Deletar" ng-click="removeproducao()"><i
+                                                class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- entrega -->
+            <div class="media col-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="no-feeds" ng-if="feedsentrega.length == 0">
+                            <p class="lead text-center">Nenhuma postagem foi feita ainda!</p>
+                        </div>
+                        <div class="card" ng-repeat="feedentrega in feedsentrega | orderBy:'+id'">
+                            <p class="feed-time">Postado em <time>{{feedentrega.dtpost | date:'dd/MM/yyyy'}} às
+                                    {{feedentrega.dtpost | date:'HH:mm'}}</time></p>
+                            <img ng-src="{{feedentrega.imagem}}" class="card-img-top">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="comentario in feedentrega.comentarios">
+                                    <span ng-if="comentario.comentario"><strong>Anotação:
+                                        </strong>{{comentario.comentario}}</span>
+                                </li>
+                            </ul>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="download-btn ml-auto">
+                                        <a href="{{feedentrega.imagem}}" class="btn btn-block btn-outline-info"
+                                            target="blank" data-toggle="tooltip" data-placement="top"
+                                            title="Abrir em nova aba">
+                                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="download-btn">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Editar"><i class="fa fa-pencil"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                    <div class="download-btn mr-auto">
+                                        <button class="btn btn-block btn-outline-info" data-toggle="tooltip"
+                                            data-placement="top" title="Deletar" ng-click="removeentrega()"><i
+                                                class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- botoes -->
+    <div class="container tables">
+        <div class="row">
+            <div class="media col-3 border">
+                <button class="btn btn-block btn-outline-info" data-toggle="modal" data-target="#ideiaModal">ADICIONAR
+                    IDEIA</button>
+            </div>
+
+            <div class="media col-3 border">
+                <button class="btn btn-block btn-outline-info" data-toggle="modal" data-target="#trialModal">ADICIONAR
+                    TRIAL</button>
+            </div>
+
+            <div class="media col-3 border">
+                <button class="btn btn-block btn-outline-info" data-toggle="modal"
+                    data-target="#producaoModal">ADICIONAR PRODUÇÃO</button>
+            </div>
+
+            <div class="media col-3 border align-center">
+                <button class="btn btn-block btn-outline-info" data-toggle="modal" data-target="#entregaModal">ADICIONAR
+                    ENTREGA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ideia modal -->
+    <div class="modal fade" id="ideiaModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Postar em Ideias</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>URL da IMAGEM</label>
+                        <input type="text" class="form-control" ng-model="imagem">
+                    </div>
+                    <div class="form-group">
+                        <label>Anotação</label>
+                        <textarea class="form-control" rows="2" ng-model="descricao"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="postar()">POSTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Trial modal -->
+    <div class="modal fade" id="trialModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Postar em Trial</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>URL da IMAGEM</label>
+                        <input type="text" class="form-control" ng-model="imagem">
+                    </div>
+                    <div class="form-group">
+                        <label>Anotação</label>
+                        <textarea class="form-control" rows="2" ng-model="descricao"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"
+                        ng-click="postartrial()">POSTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- producao modal -->
+    <div class="modal fade" id="producaoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Postar para Produção</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>URL da IMAGEM</label>
+                        <input type="text" class="form-control" ng-model="imagem">
+                    </div>
+                    <div class="form-group">
+                        <label>Anotação</label>
+                        <textarea class="form-control" rows="2" ng-model="descricao"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"
+                        ng-click="postarproducao()">POSTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- entrega modal -->
+    <div class="modal fade" id="entregaModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Postar em Entrega</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>URL da IMAGEM</label>
+                        <input type="text" class="form-control" ng-model="imagem">
+                    </div>
+                    <div class="form-group">
+                        <label>Anotação</label>
+                        <textarea class="form-control" rows="2" ng-model="descricao"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"
+                        ng-click="postarentrega()">POSTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
